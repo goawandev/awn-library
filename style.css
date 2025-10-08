@@ -3,3 +3,30 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.book-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.library {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+form {
+  margin: 20px 0;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 250px;
+}
+
+form input,
+form label {
+  font-size: 1rem;
+}
