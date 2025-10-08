@@ -8,6 +8,10 @@ function Book(title, author, pages, isRead) {
   this.isRead = isRead;
 }
 
+Book.prototype.toggleReadStatus = function () {
+  this.isRead = !this.isRead;
+};
+
 // Add book
 function addBookToLibrary(title, author, pages, isRead) {
   const newBook = new Book(title, author, pages, isRead);
@@ -24,15 +28,40 @@ function displayBook() {
   myLibrary.forEach((book) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
+    bookCard.setAttribute("data-id", book.id);
 
     bookCard.innerHTML = `
     <h3>${book.title}</h3>
     <p>Author: ${book.author}</p>
     <p>Pages: ${book.pages}</p>
-    <p>Read: ${book.isRead ? "Yes" : "No"}</p>
+    <label>
+    <input type="checkbox" class="read-toggle" ${book.isRead ? "checked" : ""}>
+    Read
+    </label>
+    <button class="remove-btn">Remove</button>
     `;
 
     libraryContainer.appendChild(bookCard);
+  });
+
+  //   EventListener remove book
+  const removeButtons = document.querySelectorAll(".remove-btn");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const bookCard = e.target.closest(".book-card");
+      const bookId = bookCard.getAttribute("data-id");
+      removeBook(bookId);
+    });
+  });
+
+  //   EventListener status read
+  const readToggles = document.querySelectorAll(".read-toggle");
+  readToggles.forEach((checkbox) => {
+    checkbox.addEventListener("change", (e) => {
+      const bookCard = e.target.closest(".book-card");
+      const bookId = bookCard.getAttribute("data-id");
+      toggleBookReadStatus(bookId);
+    });
   });
 }
 
@@ -61,6 +90,26 @@ bookForm.addEventListener("submit", (e) => {
   bookForm.reset();
   bookForm.style.display = "none";
 });
+
+// Remove book
+function removeBook(bookId) {
+  const index = myLibrary.findIndex((book) => book.id === bookId);
+
+  if (index !== -1) {
+    myLibrary.splice(index, 1);
+    console.log("Buku dihapus. Sisa buku:", myLibrary);
+    displayBook();
+  }
+}
+
+// Read status function
+function toggleBookReadStatus(bookId) {
+  const book = myLibrary.find((b) => b.id === bookId);
+  if (book) {
+    book.toggleReadStatus();
+    displayBook();
+  }
+}
 
 // testing
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, false);
