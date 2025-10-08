@@ -17,6 +17,7 @@ function addBookToLibrary(title, author, pages, isRead) {
 
 // Display book
 function displayBook() {
+  console.log(myLibrary);
   const libraryContainer = document.querySelector("#library");
   libraryContainer.innerHTML = "";
 
@@ -64,6 +65,3 @@ bookForm.addEventListener("submit", (e) => {
 // testing
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, false);
 addBookToLibrary("Clean Code", "Robert C. Martin", 464, true);
-
-// console.log(myLibrary);
-displayBook();

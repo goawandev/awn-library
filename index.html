@@ -8,26 +8,28 @@
     <title>Awn Library</title>
   </head>
   <body>
-    <h1>Welcome to Awn Library</h1>
+    <main class="container">
+      <h1>Welcome to Awn Library</h1>
 
-    <button id="newBookBtn">Add New Book</button>
+      <button id="newBookBtn">Add New Book</button>
 
-    <form action="" id="bookForm">
-      <label for="title">
-        Title:
-        <input type="text" id="title" required />
-      </label>
-      <label for="author">
-        Author: <input type="text" id="author" required />
-      </label>
-      <label for="pages">
-        Pages: <input type="number" id="pages" required />
-      </label>
-      <label for="isRead">Read: <input type="checkbox" id="isRead" /></label>
-      <button type="submit">Add Book</button>
-    </form>
+      <form action="" id="bookForm">
+        <label for="title">
+          Title:
+          <input type="text" id="title" required />
+        </label>
+        <label for="author">
+          Author: <input type="text" id="author" required />
+        </label>
+        <label for="pages">
+          Pages: <input type="number" id="pages" required />
+        </label>
+        <label for="isRead">Read: <input type="checkbox" id="isRead" /></label>
+        <button type="submit">Add Book</button>
+      </form>
 
-    <div class="library" id="library"></div>
+      <div class="library" id="library"></div>
+    </main>
 
     <!-- Javascript -->
     <script src="./main.js"></script>
